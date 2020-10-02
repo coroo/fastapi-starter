@@ -7,6 +7,10 @@ from app.middlewares import deps
 
 router = APIRouter()
 
+@router.get("/")
+async def read_main():
+    return {"msg": "Hello World"}
+
 @router.post("/users/", response_model=user_schema.User)
 def create_user(user: user_schema.UserCreate, db: Session = Depends(deps.get_db)):
     db_user = user_delivery.get_user_by_email(db, email=user.email)

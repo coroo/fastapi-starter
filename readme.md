@@ -1,30 +1,65 @@
-### Fast Api - Base Architecture
+# Fast Api - Base Architecture
+
+## Architecture
+```console
+.
+└── __pycache__
+└── app
+    ├── __pycache__
+    ├── deliveries
+    ├── middlewares
+    ├── models
+    ├── routers
+    ├── schemas
+    └── __init__.py
+└── main.py
+└── readme.md
+```
+
+------
+
+## Installation
 
 Dependencies Installation
-```
+```console
 pip3 install fastapi
 pip3 install requests
 pip3 install async-exit-stack async-generator
 pip3 install sqlalchemy
 ```
-Dependencies Server Run
+
+Dependencies Unit Test
+```console
+pip3 install pytest
 ```
-pip3 install uvicorn #(recommendation)
+
+Dependencies Server Run
+```console
+pip3 install uvicorn
 ```
 
 ------
 
-### Run App
+## Unit Test
+```console
+pytest
 ```
+
+------
+
+## Run App
+```console
 python3 main.py
 ```
-### Run Swagger
 
-Go to [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) or another documentation at [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
+## Documentation
+
+Swagger: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) 
+Redoc: [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
 
 ------
 
-### Detail
+## Detail
 For any X-Token Need, please use:
 ```
 fake-super-secret-token
