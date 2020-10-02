@@ -9,7 +9,8 @@ pip3 install sqlalchemy
 ```
 Dependencies Server Run
 ```
-pip3 install uvicorn
+pip3 install uvicorn #(recommendation)
+or
 pip3 install hypercorn
 ```
 
@@ -17,7 +18,7 @@ pip3 install hypercorn
 
 ### Run App
 ```
-uvicorn main:app --reload
+uvicorn main:app --reload #(recommendation)
 or
 hypercorn main:app --reload
 ```
