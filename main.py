@@ -1,3 +1,4 @@
+import uvicorn
 from typing import List
 
 from fastapi import Depends, FastAPI, Header, HTTPException
@@ -22,3 +23,6 @@ app.include_router(
     dependencies=[Depends(get_token_header)],
     responses={404: {"description": "Not found"}},
 )
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="127.0.0.1", port=8000)
