@@ -27,6 +27,7 @@ pip3 install fastapi
 pip3 install requests
 pip3 install async-exit-stack async-generator
 pip3 install sqlalchemy
+pip3 install pymysql
 ```
 
 Dependencies Unit Test

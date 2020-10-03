@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - mysql
+    environment:
+      - DB_HOST=host.docker.internal
+  mysql:
+    image: mysql:latest
+    ports:
+      - 8083:3306
+    volumes:
+      - ./mysql:/var/lib/mysql
+    env_file:
+      - .env

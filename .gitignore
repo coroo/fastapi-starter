@@ -1,4 +1,8 @@
 .vscode
+.env
+
+# Docker
+mysql/*
 
 # Fast Api Default Gitignore
 .idea
