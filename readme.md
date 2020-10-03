@@ -1,7 +1,8 @@
-# Fast Api - Base Architecture
+# Fast Api - Base Architecture 
+![ci](https://github.com/coroo/base-architecture/workflows/ci/badge.svg?branch=master)
 
-## Architecture
-```
+## Architecture 
+```python
 .
 |
 └── app                     # I'm the app folder, that consist of:
