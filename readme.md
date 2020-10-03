@@ -1,19 +1,19 @@
 # Fast Api - Base Architecture
 
 ## Architecture
-```console
+```bash
 .
-└── __pycache__
-└── app
-    ├── __pycache__
-    ├── deliveries
-    ├── middlewares
-    ├── models
-    ├── routers
-    ├── schemas
-    └── __init__.py
-└── main.py
-└── readme.md
+└── __pycache__             # Don't mind about me. I will auto generate if any changes only
+└── app                     # I'm the app folder, that consist of
+    ├── __pycache__             # Don't mind about me again :)
+    ├── deliveries              # I'm a controller, but in here, you can call me delivery :)
+    ├── middlewares             # I'm a cool middleware, don't me?
+    ├── models                  # I will connecting you with your database structure
+    ├── routers                 # Hi, you wanna post ? get ? Yes. Come at me :)
+    ├── schemas                 # Don't you dare to ignore me. I will help your structure
+    └── __init__.py             # In python, I will handle this sub-folder, so that you can easily calling them
+└── main.py                 # Call me, then you will have your app running :3
+└── readme.md               # You in me right now ;)
 ```
 
 ------
