@@ -1,44 +1,34 @@
 # Fast Api - Base Architecture
 
 ## Architecture
-```bash
+```
 .
 |
-└── app                     # I'm the app folder, that consist of
+└── app                     # I'm the app folder, that consist of:
     ├── deliveries              # I'm a controller, but in here, you can call me delivery :)
     ├── middlewares             # I'm a cool middleware, don't me?
     ├── models                  # I will connecting you with your database structure
     ├── routers                 # Hi, you wanna post ? get ? Yes. Come at me :)
     ├── schemas                 # Don't you dare to ignore me. I will help your structure
     └── __init__.py             # In python, I will handle this sub-folder, so that you can easily calling them
-└── config                  # Config anything ? Call me then :D
+└── config                  # Config anything ? Write on me then :D
     └── database.py             # You can do database configuration at me. Remember that!
+└── test                    # Warning! You must create me (unit testing) before ask them!
+    └── all-unit-testing
+└── env.py                  # I am the env.example, do you remember ?
 └── main.py                 # Call me, then you will have your app running :3
 └── readme.md               # You in me right now ;)
 ```
 
 ------
 
-## Installation
-
-Dependencies Installation
-```console
-pip3 install fastapi
-pip3 install requests
-pip3 install async-exit-stack async-generator
-pip3 install sqlalchemy
-pip3 install pymysql
+## Docker Installation
 ```
-
-Dependencies Unit Test
-```console
-pip3 install pytest
+docker-compose up
 ```
+Or see Manual Installation in [here](#installation)
 
-Dependencies Server Run
-```console
-pip3 install uvicorn
-```
+> For easily remove docker, you can use: docker-compose down
 
 ------
 
@@ -65,4 +55,27 @@ Redoc: [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
 For any X-Token Need, please use:
 ```
 fake-super-secret-token
+```
+
+------
+
+## Installation
+
+Dependencies Installation
+```console
+pip3 install fastapi
+pip3 install requests
+pip3 install async-exit-stack async-generator
+pip3 install sqlalchemy
+pip3 install pymysql
+```
+
+Dependencies Unit Test
+```console
+pip3 install pytest
+```
+
+Dependencies Server Run
+```console
+pip3 install uvicorn
 ```
