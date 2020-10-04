@@ -5,7 +5,7 @@ from fastapi import Depends, FastAPI, Header, HTTPException
 from sqlalchemy.orm import Session
 
 from app.middlewares import deps
-from app.routers import items, users
+from app.usecases import items, users
 
 app = FastAPI()
 

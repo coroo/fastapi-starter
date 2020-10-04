@@ -6,17 +6,18 @@
 .
 |
 └── app                     # I'm the app folder, that consist of:
-    ├── deliveries              # I'm a controller, but in here, you can call me delivery :)
+    ├── deliveries              # Use me as services, so that you can delivery anything at control!
     ├── middlewares             # I'm a cool middleware, don't me?
-    ├── models                  # I will connecting you with your database structure
-    ├── routers                 # Hi, you wanna post ? get ? Yes. Come at me :)
-    ├── schemas                 # Don't you dare to ignore me. I will help your structure
+    ├── models                  # I will connecting you with the database structure
+    ├── repositories            # I'm a repositories, just like you ever know ;)
+    ├── usecases                # I'm a controller with router, so you can call me usecases :)
+    ├── schemas                 # Don't you dare to ignore me. I will help all of data structure
     └── __init__.py             # In python, I will handle this sub-folder, so that you can easily calling them
 └── config                  # Config anything ? Write on me then :D
     └── database.py             # You can do database configuration at me. Remember that!
     └── __init__.py             # Nice to meet you again!
 └── test                    # Warning! You must create me (unit test) before ask them!
-    └── all-unit-testing
+    └── {{all_unit_testing}}
     └── __init__.py             
 └── env.py                  # I am the env.example, do you remember ?
 └── main.py                 # Call me, then you will have your app running :3
