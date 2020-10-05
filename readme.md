@@ -2,7 +2,7 @@
 
 [![ci](https://github.com/coroo/base-architecture/workflows/ci/badge.svg?branch=master)](../../actions)
 
-:bulb: This architecture use the concept of [laravel](https://laravel.com/) from PHP & [rails](https://rubyonrails.org/) from Ruby. By using this architecture, we hope that you don't need to create FastApi from sctrach again. Then you can focus on your development with our standardized pattern.
+:bulb: This architecture use the domain layer concept of [laravel](https://laravel.com/) from PHP, [rails](https://rubyonrails.org/) from Ruby and [clean-architecture](https://github.com/bxcodec/go-clean-arch#the-diagram) from Golang . By using this architecture, we hope that you don't need to create FastApi from sctrach again. Then you can focus on your development with our standardized pattern.
 
 ## :man_dancing: Architecture 
 ```python
