@@ -9,11 +9,11 @@
 .
 |
 └── app                     # I'm the app folder, that consist of:
-    ├── deliveries              # Use me as services, so that you can delivery anything at control!
+    ├── deliveries              # I'm a controller with router, I will delivery your request :)
     ├── middlewares             # I'm a cool middleware, don't me?
     ├── models                  # I will connecting you with the database structure
     ├── repositories            # I'm a repositories, just like you ever know ;)
-    ├── usecases                # I'm a controller with router, so you can call me usecases :)
+    ├── usecases                # Use me as services, so that you can create any usecases!
     ├── schemas                 # Don't you dare to ignore me. I will help all of data structure
     └── __init__.py             # In python, I will handle this sub-folder, so that you can easily calling them
 └── config                  # Config anything ? Write on me then :D
@@ -26,6 +26,9 @@
 └── main.py                 # Call me, then you will have your app running :3
 └── readme.md               # You in me right now ;)
 ```
+
+## :pushpin: Domain Layer
+![diagram](https://github.com/bxcodec/go-clean-arch/raw/master/clean-arch.png)
 
 ------
 
