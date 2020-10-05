@@ -1,7 +1,10 @@
 # Fast Api - Base Architecture 
-![ci](https://github.com/coroo/base-architecture/workflows/ci/badge.svg?branch=master)
 
-## Architecture 
+[![ci](https://github.com/coroo/base-architecture/workflows/ci/badge.svg?branch=master)](../../actions)
+
+:bulb: This architecture use the concept of [laravel](https://laravel.com/) from PHP & [rails](https://rubyonrails.org/) from Ruby. By using this architecture, we hope that you don't need to create FastApi from sctrach again. Then you can focus on your development with our standardized pattern.
+
+## :man_dancing: Architecture 
 ```python
 .
 |
@@ -26,7 +29,7 @@
 
 ------
 
-## Docker Installation
+## :rocket: Docker Installation
 ```
 docker-compose up
 ```
@@ -34,24 +37,17 @@ Or see Manual Installation in [here](#installation)
 
 > For easily remove docker, you can use: docker-compose down
 
-------
+## :clipboard: Documentation
 
-## Unit Test
-```console
-pytest
-```
+### Swagger
 
-------
+> Now go to [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
+> You will see the automatic interactive API documentation (provided by Swagger UI)
 
-## Run App
-```console
-python3 main.py
-```
+### Alternative Documentation
 
-## Documentation
-
-Swagger: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) 
-Redoc: [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
+> And now, go to [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
+> You will see the alternative automatic documentation (provided by ReDoc)
 
 ------
 
@@ -83,4 +79,18 @@ pip3 install pytest
 Dependencies Server Run
 ```console
 pip3 install uvicorn
+```
+
+------
+
+## Unit Test
+```console
+pytest
+```
+
+------
+
+## Run App
+```console
+python3 main.py
 ```
