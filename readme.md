@@ -32,11 +32,15 @@
 
 ------
 
+## Installation
+
+Add `.env` file with some value from [env.example](env.py)
+
 ## :rocket: Docker Installation
 ```
 docker-compose up
 ```
-Or see Manual Installation in [here](#installation)
+Or see Manual Installation in [here](#manual-installation)
 
 > For easily remove docker, you can use: docker-compose down
 
@@ -62,7 +66,7 @@ fake-super-secret-token
 
 ------
 
-## Installation
+## Manual Installation
 
 Dependencies Installation
 ```console
