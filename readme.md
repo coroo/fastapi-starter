@@ -70,34 +70,19 @@ fake-super-secret-token
 
 Dependencies Installation
 ```console
-pip3 install fastapi
-pip3 install requests
-pip3 install async-exit-stack async-generator
-pip3 install python-dotenv
-pip3 install sqlalchemy
-pip3 install pymysql
-```
-
-Dependencies Unit Test
-```console
-pip3 install pytest
-```
-
-Dependencies Server Run
-```console
-pip3 install uvicorn
+pip3 install -r requirements.txt
 ```
 
 ------
 
-## Unit Test
+### Unit Test
 ```console
 pytest
 ```
 
 ------
 
-## Run App
+### Run App
 ```console
 python3 main.py
 ```

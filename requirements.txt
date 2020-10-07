@@ -1,0 +1,7 @@
+fastapi
+requests
+async-exit-stack 
+async-generator
+python-dotenv
+sqlalchemy
+pymysql
