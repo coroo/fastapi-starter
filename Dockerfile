@@ -17,11 +17,5 @@ COPY . ./
 CMD ["mysql"]
 
 # command to run on container start
-CMD pip install fastapi && \
-    pip install uvicorn && \
-    pip install requests && \
-    pip install async-exit-stack async-generator && \
-    pip install python-dotenv && \
-    pip install pymysql && \
-    pip install sqlalchemy && \
+CMD pip install -r requirement.txt && \
     python main.py
