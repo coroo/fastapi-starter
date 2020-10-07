@@ -6,19 +6,20 @@ from sqlalchemy.orm import Session
 
 from app.middlewares import deps
 from app.deliveries import items, users
+from env import settings
 
 app = FastAPI()
 
 
 async def get_token_header(x_token: str = Header(...)):
     if x_token != "fake-super-secret-token":
-        raise HTTPException(status_code=400, detail="X-Token header invalid")
+        raise HTTPException(status_code=403, detail="Forbidden")
 
 
-app.include_router(users.router)
+app.include_router(users.router, prefix=settings.API_PREFIX)
 app.include_router(
     items.router,
-    prefix="/items",
+    prefix=settings.API_PREFIX,
     tags=["items"],
     dependencies=[Depends(get_token_header)],
     responses={404: {"description": "Not found"}},
