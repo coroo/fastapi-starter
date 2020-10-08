@@ -4,8 +4,6 @@ from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 from config.database import Base
-if TYPE_CHECKING:
-    from .user_model import User
 
 class Item(Base):
     __tablename__ = "items"
