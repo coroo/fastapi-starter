@@ -5,3 +5,6 @@ async-generator
 python-dotenv
 sqlalchemy
 pymysql
+pytest
+uvicorn
+faker
