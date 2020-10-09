@@ -36,4 +36,4 @@ jobs:
         pytest
     - name: Check test coverage
       run: |
-        pytest --cov=app test/
+        if [ -f .ignorecoveragerc ]; then pytest --cov=app --cov-config=.ignorecoveragerc test/; else pytest --cov=app test/; fi
