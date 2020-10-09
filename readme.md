@@ -52,7 +52,17 @@ Or see Manual Installation in [here](#manual-installation)
 
 ## :clipboard: Documentation
 
-## Http Status Codes
+### Swagger
+
+> Now go to [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
+> You will see the automatic interactive API documentation (provided by Swagger UI)
+
+### Alternative Documentation
+
+> And now, go to [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
+> You will see the alternative automatic documentation (provided by ReDoc)
+
+## :traffic_light: Http Status Codes
 
 > Useful informations about each kind of http code
 
@@ -88,18 +98,6 @@ The body section may contain a document describing the error in human readable f
 This means that even though the request appeared to be valid something went wrong at the server level and it wasn’t able to return anything.
 
 - [500](http://httpstatus.es/500) - **Internal Error** - The server encountered an unexpected condition which prevented it from fulfilling the request.
-
----
-
-### Swagger
-
-> Now go to [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
-> You will see the automatic interactive API documentation (provided by Swagger UI)
-
-### Alternative Documentation
-
-> And now, go to [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
-> You will see the alternative automatic documentation (provided by ReDoc)
 
 ---
 
