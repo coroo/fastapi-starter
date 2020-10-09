@@ -50,7 +50,9 @@ Or see Manual Installation in [here](#manual-installation)
 
 ---
 
-# Http Status Codes
+## :clipboard: Documentation
+
+## Http Status Codes
 
 > Useful informations about each kind of http code
 
@@ -88,8 +90,6 @@ This means that even though the request appeared to be valid something went wron
 - [500](http://httpstatus.es/500) - **Internal Error** - The server encountered an unexpected condition which prevented it from fulfilling the request.
 
 ---
-
-## :clipboard: Documentation
 
 ### Swagger
 
