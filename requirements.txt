@@ -6,5 +6,6 @@ python-dotenv
 sqlalchemy
 pymysql
 pytest
+pytest-cov
 uvicorn
 faker
