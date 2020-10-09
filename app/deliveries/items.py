@@ -9,9 +9,7 @@ router = APIRouter()
 local_prefix = "/items/"
 
 @router.post("/users/{user_id}"+local_prefix, response_model=item_schema.Item)
-def create_item_for_user(
-    user_id: int, item: item_schema.ItemCreate, db: Session = Depends(deps.get_db)
-):
+def create_item_for_user(user_id: int, item: item_schema.ItemCreate, db: Session = Depends(deps.get_db)):
     return item_usecase.create_user_item(db=db, item=item, user_id=user_id)
 
 @router.get(local_prefix, response_model=List[item_schema.Item])
