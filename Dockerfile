@@ -17,5 +17,5 @@ COPY . ./
 CMD ["mysql"]
 
 # command to run on container start
-CMD pip install -r requirement.txt && \
+CMD pip install -r requirements.txt && \
     python main.py

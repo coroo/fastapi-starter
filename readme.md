@@ -34,6 +34,22 @@
 
 ---
 
+## Installation
+
+Add `.env` file with some value from [env.example](env.py)
+
+## :rocket: Docker Installation
+
+```
+docker-compose up --build -d
+```
+
+Or see Manual Installation in [here](#manual-installation)
+
+> For easily remove docker, you can use: docker-compose down
+
+---
+
 # Http Status Codes
 
 > Useful informations about each kind of http code
@@ -72,20 +88,6 @@ This means that even though the request appeared to be valid something went wron
 - [500](http://httpstatus.es/500) - **Internal Error** - The server encountered an unexpected condition which prevented it from fulfilling the request.
 
 ---
-
-## Installation
-
-Add `.env` file with some value from [env.example](env.py)
-
-## :rocket: Docker Installation
-
-```
-docker-compose up
-```
-
-Or see Manual Installation in [here](#manual-installation)
-
-> For easily remove docker, you can use: docker-compose down
 
 ## :clipboard: Documentation
 
