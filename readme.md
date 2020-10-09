@@ -125,6 +125,12 @@ pip3 install -r requirements.txt
 
 ```console
 pytest
+
+# Check Coverage
+pytest --cov=app --cov-config=.ignorecoveragerc test/
+
+# Create Coverage Report
+pytest --cov=app --cov-config=.ignorecoveragerc --cov-report html test/
 ```
 
 ---
