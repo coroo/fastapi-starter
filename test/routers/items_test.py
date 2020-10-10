@@ -46,12 +46,12 @@ def test_read_items():
     assert response.status_code == 200
     # assert response.json() == {"detail": "Not Found"}
 
-# def test_read_user():
-#     response = client.get(settings.API_PREFIX+"/items/1")
-#     assert response.status_code == 200
-#     # assert response.json() == {"detail": "Not Found"}
+def test_read_item():
+    response = client.get(settings.API_PREFIX+"/items/1", headers={"X-Token": "fake-super-secret-token"})
+    assert response.status_code == 200
+    # assert response.json() == {"detail": "Not Found"}
 
-# def test_read_user_doesnt_exist():
-#     response = client.get(settings.API_PREFIX+"/items/987654321")
-#     assert response.status_code == 404
-#     # assert response.json() == {"detail": "Not Found"}
+def test_read_item_doesnt_exist():
+    response = client.get(settings.API_PREFIX+"/items/987654321", headers={"X-Token": "fake-super-secret-token"})
+    assert response.status_code == 404
+    # assert response.json() == {"detail": "Not Found"}
