@@ -16,3 +16,11 @@ def create_item_for_user(user_id: int, item: item_schema.ItemCreate, db: Session
 def read_items(commons: dict = Depends(di.common_parameters), db: Session = Depends(deps.get_db)):
     items = item_usecase.get_items(db, skip=commons['skip'], limit=commons['limit'])
     return items
+
+@router.get(local_prefix+"{item_id}", response_model=item_schema.Item)
+def read_item(item_id: int, db: Session = Depends(deps.get_db)):
+    db_item = item_usecase.get_item(db, item_id=item_id)
+    if db_item is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Item not found")
+    return db_item
