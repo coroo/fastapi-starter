@@ -4,11 +4,6 @@ from sqlalchemy.orm import Session
 from app.schemas import user_schema
 from app.usecases import user_usecase
 from app.middlewares import deps, di
-from datetime import datetime
-
-import logging
-logging.basicConfig(filename='logs/{:%Y-%m-%d}.log'.format(datetime.now()), level=logging.DEBUG,
-                    format='%(asctime)s:%(levelname)s - %(message)s')
 
 router = APIRouter()
 local_prefix = "/users/"
@@ -25,7 +20,8 @@ def create_user(user: user_schema.UserCreate, db: Session = Depends(deps.get_db)
 
 @router.get(local_prefix, response_model=List[user_schema.User])
 def read_users(commons: dict = Depends(di.common_parameters), db: Session = Depends(deps.get_db)):
-    users = user_usecase.get_users(db, skip=commons['skip'], limit=commons['limit'])
+    users = user_usecase.get_users(
+        db, skip=commons['skip'], limit=commons['limit'])
     return users
 
 

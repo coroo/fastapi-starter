@@ -66,8 +66,6 @@ Or see Manual Installation in [here](#manual-installation)
 
 > Useful informations about each kind of http code
 
-_Inspired by the awesome lists_
-
 ## List of codes
 
 The list is separated by kind.
