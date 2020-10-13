@@ -9,12 +9,12 @@ from app.middlewares import deps
 from app.deliveries import items, users
 from env import settings
 
-# CREATE LOGS DIRECTORY
-import os
-if not os.path.exists('logs'):
-    os.makedirs('logs')
+from app.utils import metadata
 
-app = FastAPI()
+app = FastAPI(title=settings.APP_NAME,
+              description=settings.APP_DESCRIPTION,
+              version=settings.APP_VERSION,
+              openapi_tags=metadata.tags)
 
 app.add_middleware(
     CORSMiddleware,

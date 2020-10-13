@@ -4,7 +4,9 @@ from pydantic import BaseSettings
 class Settings(BaseSettings):
     # APPLICATION SETTING
     APP_NAME: str = "Awesome Base Architecture"
+    APP_DESCRIPTION: str = "Base App for next project"
     API_PREFIX: str = "/api/v1"
+    APP_VERSION: str = "v1.0"
 
     # DB CONNECTION
     DB_CONNECTION: str = "mysql"
