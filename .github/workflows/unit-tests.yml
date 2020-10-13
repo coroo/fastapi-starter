@@ -5,9 +5,11 @@ name: ci
 
 on:
   push:
-    branches: '*'
+    branches: 
+      - '*'         # matches every branch that doesn't contain a '/'
   pull_request:
-    branches: '*'
+    branches: 
+      - '*'         # matches every branch that doesn't contain a '/'
 
 jobs:
   build:
