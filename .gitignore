@@ -1,6 +1,7 @@
 .vscode
 .env
 logs
+.pylintrc
 
 # Docker
 mysql/*
