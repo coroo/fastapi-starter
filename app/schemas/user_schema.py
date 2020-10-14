@@ -14,8 +14,16 @@ class UserCreate(UserBase):
 
 class User(UserBase):
     id: int
-    is_active: bool
+    username: str
+    # email: Optional[str] = None
+    full_name: Optional[str] = None
+    disabled: Optional[bool] = None
+    # is_active: bool
     items: List[Item] = []
 
     class Config:
         orm_mode = True
+
+
+class UserInDB(User):
+    hashed_password: str
