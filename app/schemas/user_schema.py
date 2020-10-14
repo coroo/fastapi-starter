@@ -1,7 +1,6 @@
-from typing import List, Optional
+from typing import Optional
 
 from pydantic import BaseModel
-from .item_schema import Item
 
 
 class UserBase(BaseModel):
@@ -19,7 +18,6 @@ class User(UserBase):
     full_name: Optional[str] = None
     disabled: Optional[bool] = None
     # is_active: bool
-    items: List[Item] = []
 
     class Config:
         orm_mode = True

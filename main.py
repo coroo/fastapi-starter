@@ -32,8 +32,10 @@ async def get_token_header(x_token: str = Header(...)):
     if x_token != "fake-super-secret-token":
         raise HTTPException(status_code=403, detail="Forbidden")
 
-
-app.include_router(users.router, prefix=settings.API_PREFIX)
+app.include_router(
+    users.router,
+    tags=["users"],
+    prefix=settings.API_PREFIX)
 app.include_router(
     items.router,
     prefix=settings.API_PREFIX,
