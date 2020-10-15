@@ -9,11 +9,7 @@ def get_user(db: Session, user_id: int):
 
 
 def get_user_by_email(db: Session, email: str):
-    print("SAYA DI USECASE")
-    test = user_repository.get_user_by_email(db, email=email)
-    print("DI USECASE SETELAH CASE")
-    return test
-    # return user_repository.get_user_by_email(db, email=email)
+    return user_repository.get_user_by_email(db, email=email)
 
 
 def get_users(db: Session, skip: int = 0, limit: int = 100):

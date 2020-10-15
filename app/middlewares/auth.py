@@ -15,7 +15,7 @@ from app.usecases import user_usecase
 
 # to get a string like this run:
 # openssl rand -hex 32
-SECRET_KEY = "e1bace6f2c07af745841d5cfee6c65fa2dae73655ca0d0d026dc8ec5939dafb2"
+SECRET_KEY = settings.SECRET_KEY
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
@@ -62,9 +62,7 @@ async def get_current_user(
         token_data = TokenData(email=email)
     except JWTError:
         raise credentials_exception
-    print(token_data.email)
     user = user_usecase.get_user_by_email(db, email=token_data.email)
-    print("SAYA DSINI")
     if user is None:
         raise credentials_exception
     return user

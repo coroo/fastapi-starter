@@ -12,15 +12,12 @@ def get_user(db: Session, user_id: int):
 
 
 def get_user_by_email(db: Session, email: str):
-    print(db)
-    print(email)
     return db.query(
         user_model.User
     ).filter(user_model.User.email == email).first()
 
 
 def get_users(db: Session, skip: int = 0, limit: int = 100):
-    print(db)
     return db.query(user_model.User).offset(skip).limit(limit).all()
 
 

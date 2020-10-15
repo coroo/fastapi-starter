@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     APP_HOST: str = "0.0.0.0"
     APP_PORT: int = 8000
     APP_MODE: str = "development"
+    SECRET_KEY: str = ""
 
     # DB CONNECTION
     DB_CONNECTION: str = "mysql"
