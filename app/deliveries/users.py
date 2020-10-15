@@ -12,7 +12,7 @@ router = APIRouter()
 local_prefix = "/users/"
 
 
-@router.post("/token", response_model=token_schema.Token)
+@router.post(local_prefix+"token", response_model=token_schema.Token)
 async def login(
         form_data: OAuth2PasswordRequestForm = Depends(),
         db: Session = Depends(deps.get_db)
@@ -31,7 +31,7 @@ async def login(
     return {"access_token": access_token, "token_type": "bearer"}
 
 
-@router.get("/users/me/", response_model=user_schema.User)
+@router.get(local_prefix+"me/", response_model=user_schema.User)
 async def read_users_me(
         current_user: user_schema.User = Depends(
             auth.get_current_active_user)
@@ -65,10 +65,7 @@ def read_users(
 @router.get(local_prefix+"{user_id}", response_model=user_schema.User)
 def read_user(
             user_id: int,
-            db: Session = Depends(deps.get_db),
-            current_user: user_schema.User = Depends(
-                auth.get_current_active_user
-            )
+            db: Session = Depends(deps.get_db)
         ):
     db_user = user_usecase.get_user(db, user_id=user_id)
     if db_user is None:

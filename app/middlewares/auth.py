@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from typing import Optional
 from fastapi import Depends, HTTPException, status
-# from fastapi import Depends
+from env import settings
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from passlib.context import CryptContext
@@ -22,7 +22,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/v1/token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl=settings.API_PREFIX+"/users/token")
     
 
 def authenticate_user(db, email: str, password: str):
