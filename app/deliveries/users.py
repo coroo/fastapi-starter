@@ -30,12 +30,14 @@ async def login(
     )
     return {"access_token": access_token, "token_type": "bearer"}
 
+
 @router.get("/users/me/", response_model=user_schema.User)
 async def read_users_me(
         current_user: user_schema.User = Depends(
             auth.get_current_active_user)
         ):
     return current_user
+
 
 @router.post(local_prefix, response_model=user_schema.User)
 def create_user(
@@ -61,7 +63,13 @@ def read_users(
 
 
 @router.get(local_prefix+"{user_id}", response_model=user_schema.User)
-def read_user(user_id: int, db: Session = Depends(deps.get_db), current_user: user_schema.User = Depends(auth.get_current_active_user)):
+def read_user(
+            user_id: int,
+            db: Session = Depends(deps.get_db),
+            current_user: user_schema.User = Depends(
+                auth.get_current_active_user
+            )
+        ):
     db_user = user_usecase.get_user(db, user_id=user_id)
     if db_user is None:
         raise HTTPException(
