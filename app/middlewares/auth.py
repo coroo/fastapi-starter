@@ -22,8 +22,10 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl=settings.API_PREFIX+"/users/token")
-    
+oauth2_scheme = OAuth2PasswordBearer(
+        tokenUrl=settings.API_PREFIX+"/users/token"
+    )
+
 
 def authenticate_user(db, email: str, password: str):
     user = user_usecase.get_user_by_email(db, email)
@@ -46,7 +48,7 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
 
 
 async def get_current_user(
-            token: str = Depends(oauth2_scheme), 
+            token: str = Depends(oauth2_scheme),
             db: Session = Depends(get_db)
         ):
     credentials_exception = HTTPException(

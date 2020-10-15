@@ -9,7 +9,7 @@ class Item(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(100), index=True)
-    description = Column(String(100), index=True)
-    owner_id = Column(Integer, ForeignKey("users.id"))
+    description = Column(String(100))
+    owner_id = Column(String(100), ForeignKey("users.id"))
 
     owner = relationship("User", back_populates="items")

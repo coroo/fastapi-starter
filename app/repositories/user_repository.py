@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from app.models import user_model
 from app.schemas import user_schema
 from app.utils.hash import create_hashing
+from app.utils.uuid import generate_uuid
 
 
 def get_user(db: Session, user_id: int):
@@ -22,8 +23,13 @@ def get_users(db: Session, skip: int = 0, limit: int = 100):
 
 
 def create_user(db: Session, user: user_schema.UserCreate):
+    uuid = generate_uuid()
     hashpass = create_hashing(user.password)
-    db_user = user_model.User(email=user.email, hashed_password=hashpass)
+    db_user = user_model.User(
+        id=uuid,
+        full_name=user.full_name,
+        email=user.email,
+        hashed_password=hashpass)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
