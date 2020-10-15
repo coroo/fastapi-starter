@@ -13,10 +13,11 @@ class UserCreate(UserBase):
 
 class User(UserBase):
     id: int
-    username: str
+    # username: str
+    email: str
     # email: Optional[str] = None
     full_name: Optional[str] = None
-    disabled: Optional[bool] = None
+    is_active: Optional[bool] = None
     # is_active: bool
 
     class Config:
