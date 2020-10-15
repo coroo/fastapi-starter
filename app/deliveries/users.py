@@ -14,8 +14,8 @@ local_prefix = "/users/"
 
 @router.post(local_prefix+"token", response_model=token_schema.Token)
 async def login(
-        form_data: OAuth2PasswordRequestForm = Depends(),
-        db: Session = Depends(deps.get_db)
+            form_data: OAuth2PasswordRequestForm = Depends(),
+            db: Session = Depends(deps.get_db)
         ):
     user = auth.authenticate_user(db, form_data.username, form_data.password)
     if not user:

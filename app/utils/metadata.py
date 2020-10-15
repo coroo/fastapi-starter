@@ -3,7 +3,8 @@
 tags = [
     {
         "name": "users",
-        "description": "Operations with users. The **login** logic is also here.",
+        "description": "Operations with users."
+        + "The **login** logic is also here.",
     },
     {
         "name": "items",
