@@ -6,11 +6,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.middlewares import auth
 from app.deliveries import items, users
 from env import settings
-from config.database import Base, engine
 
 from app.utils import metadata
 
-Base.metadata.create_all(bind=engine)
+# will delete in future, since use alembic migration
+# Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title=settings.APP_NAME,
               description=settings.APP_DESCRIPTION,
