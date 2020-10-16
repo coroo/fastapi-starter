@@ -15,7 +15,7 @@ PYTHONPATH=. alembic upgrade head
 
 Relative upgrades/downgrades are also supported. To move two versions from the current, a decimal value “+N” can be supplied:
 ```
-alembic upgrade +2
+PYTHONPATH=. alembic upgrade +2
 ```
 
 Negative values are accepted for downgrades:
