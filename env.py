@@ -7,6 +7,10 @@ class Settings(BaseSettings):
     APP_DESCRIPTION: str = "Base App for next project"
     API_PREFIX: str = "/api/v1"
     APP_VERSION: str = "v1.0"
+    APP_HOST: str = "0.0.0.0"
+    APP_PORT: int = 8000
+    APP_MODE: str = "development"
+    SECRET_KEY: str = ""
 
     # DB CONNECTION
     DB_CONNECTION: str = "mysql"

@@ -36,6 +36,12 @@
 
 ## Installation
 
+Create `SECRET_KEY` by:
+
+```
+openssl rand -hex 32
+```
+
 Add `.env` file with some value from [env.example](env.py)
 
 ## :rocket: Docker Installation

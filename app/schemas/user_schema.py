@@ -1,11 +1,11 @@
-from typing import List, Optional
+from typing import Optional
 
 from pydantic import BaseModel
-from .item_schema import Item
 
 
 class UserBase(BaseModel):
     email: str
+    full_name: Optional[str] = None
 
 
 class UserCreate(UserBase):
@@ -13,9 +13,12 @@ class UserCreate(UserBase):
 
 
 class User(UserBase):
-    id: int
-    is_active: bool
-    items: List[Item] = []
+    id: str
+    is_active: Optional[bool] = 1
 
     class Config:
         orm_mode = True
+
+
+class UserInDB(User):
+    hashed_password: str

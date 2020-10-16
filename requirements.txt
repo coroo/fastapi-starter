@@ -9,3 +9,5 @@ pytest
 pytest-cov
 uvicorn
 faker
+python-jose[cryptography]
+passlib[bcrypt]
