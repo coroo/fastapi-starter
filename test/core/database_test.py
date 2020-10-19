@@ -4,15 +4,20 @@ from sqlalchemy.orm import sessionmaker
 
 from config.database import Base
 from app.middlewares import deps
-from env import settings
 from main import app
+import os
+
+if os.path.exists('test.db'):
+    os.remove("test.db")
 
 SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
 )
-TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+TestingSessionLocal = sessionmaker(autocommit=False,
+                                   autoflush=False,
+                                   bind=engine)
 
 
 Base.metadata.create_all(bind=engine)

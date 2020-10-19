@@ -53,6 +53,15 @@ def test_create_token():
     assert data["email"] == fake_email
 
 
+def test_create_token_with_invalid_credentials():
+    response = client.post(
+        settings.API_PREFIX+local_prefix+"token",
+        data={"username": fake_email, "password": 'wrong_email'},
+    )
+
+    assert response.status_code == 401
+
+
 def test_create_user_duplicate():
     response = client.post(
         settings.API_PREFIX+local_prefix,
@@ -66,10 +75,6 @@ def test_read_users():
     assert response.status_code == 200
     # assert response.json() == {"detail": "Not Found"}
 
-
-# def test_read_me():
-#     response = client.get(settings.API_PREFIX+"/users/me/")
-#     assert response.status_code == 200
 
 # def test_read_me():
 #     response = client.get(settings.API_PREFIX+"/users/me/")
