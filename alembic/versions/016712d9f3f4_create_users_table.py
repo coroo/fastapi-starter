@@ -27,6 +27,10 @@ def upgrade():
         sa.Column('full_name', sa.String(100)),
         sa.Column('hashed_password', sa.String(100), nullable=False),
         sa.Column('is_active', sa.Boolean, default=True),
+        sa.Column('created_at', sa.DateTime(),
+                  server_default=sa.func.current_timestamp(), nullable=False),
+        sa.Column('updated_at', sa.DateTime(),
+                  server_default=sa.func.current_timestamp(), nullable=False),
     )
     pass
 

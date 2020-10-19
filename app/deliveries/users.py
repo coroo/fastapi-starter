@@ -64,7 +64,7 @@ def read_users(
 
 @router.get(local_prefix+"{user_id}", response_model=user_schema.User)
 def read_user(
-            user_id: int,
+            user_id: str,
             db: Session = Depends(deps.get_db)
         ):
     db_user = user_usecase.get_user(db, user_id=user_id)
