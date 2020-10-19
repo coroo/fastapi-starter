@@ -1,15 +1,27 @@
 from fastapi.testclient import TestClient
 from env import settings
+from app.middlewares import auth
+from typing import Optional
+from app.utils.uuid import generate_uuid
 
 from main import app
 
 client = TestClient(app)
 local_prefix = "/users/"
 
+email = "coroo.wicaksono@gmail.com"
+name = "Kuncoro Wicaksono"
+password = "mysecretpass"
+
+
+async def override_dependency(email: Optional[str] = email,):
+    return {"id": generate_uuid(), "email": email,
+            "full_name": name, "is_active": 1}
+
 
 def test_create_defined_user():
-    email = "coroo.wicaksono@gmail.com"
-    password = "mysecretpass"
+    app.dependency_overrides[
+        auth.get_current_active_user] = override_dependency
     response = client.post(
         settings.API_PREFIX+local_prefix,
         json={"email": email,

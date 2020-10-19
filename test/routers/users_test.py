@@ -20,10 +20,11 @@ async def override_dependency(email: Optional[str] = fake_email,):
     return {"id": generate_uuid(), "email": email,
             "full_name": fake_name, "is_active": 1}
 
-app.dependency_overrides[auth.get_current_active_user] = override_dependency
-
 
 def test_create_user():
+    app.dependency_overrides[
+        auth.get_current_active_user] = override_dependency
+
     response = client.post(
         settings.API_PREFIX+local_prefix,
         json={"email": fake_email, "password": fake_password},
