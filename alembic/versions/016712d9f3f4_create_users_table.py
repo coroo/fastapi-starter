@@ -7,6 +7,8 @@ Create Date: 2020-10-15 15:53:00.114337
 """
 from alembic import op
 import sqlalchemy as sa
+from app.utils.uuid import generate_uuid
+from app.utils.hash import create_hashing
 
 
 # revision identifiers, used by Alembic.
@@ -17,7 +19,7 @@ depends_on = None
 
 
 def upgrade():
-    op.create_table(
+    users = op.create_table(
         'users',
         sa.Column('id', sa.String(50), primary_key=True, index=True),
         sa.Column('email', sa.String(100),
@@ -32,6 +34,18 @@ def upgrade():
         sa.Column('updated_at', sa.DateTime(),
                   server_default=sa.func.current_timestamp(), nullable=False),
     )
+
+    uuid = generate_uuid()
+    password = create_hashing('Abcd1234')
+
+    op.bulk_insert(users,
+                   [
+                        {'id': uuid,
+                         'email': 'admin@superyou.com',
+                         'full_name': 'Administrator',
+                         'hashed_password': password,
+                         'is_active': 1}
+                    ])
     pass
 
 
