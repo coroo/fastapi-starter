@@ -28,7 +28,8 @@ async def login(
     access_token = auth.create_access_token(
         data={"sub": user.email}, expires_delta=access_token_expires
     )
-    return {"access_token": access_token, "token_type": "bearer"}
+    return {"access_token": access_token,
+            "token_type": "bearer"}
 
 
 @router.get(local_prefix+"me/", response_model=user_schema.User)
@@ -64,7 +65,7 @@ def read_users(
 
 @router.get(local_prefix+"{user_id}", response_model=user_schema.User)
 def read_user(
-            user_id: int,
+            user_id: str,
             db: Session = Depends(deps.get_db)
         ):
     db_user = user_usecase.get_user(db, user_id=user_id)

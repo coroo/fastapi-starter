@@ -11,3 +11,5 @@ uvicorn
 faker
 python-jose[cryptography]
 passlib[bcrypt]
+python-multipart
+alembic

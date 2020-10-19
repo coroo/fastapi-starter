@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     APP_PORT: int = 8000
     APP_MODE: str = "development"
     SECRET_KEY: str = ""
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
 
     # DB CONNECTION
     DB_CONNECTION: str = "mysql"

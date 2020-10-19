@@ -16,7 +16,7 @@ def get_item(db: Session, item_id: int):
     ).filter(item_model.Item.id == item_id).first()
 
 
-def create_user_item(db: Session, item: item_schema.ItemCreate, user_id: int):
+def create_user_item(db: Session, item: item_schema.ItemCreate, user_id: str):
     db_item = item_model.Item(**item.dict(), owner_id=user_id)
     db.add(db_item)
     db.commit()

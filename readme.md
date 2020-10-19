@@ -34,7 +34,13 @@
 
 ---
 
-## Installation
+## :computer: Setup & Installation
+
+### Database Migrations
+
+We use `alembic` database migrations. So please [read this documentation](alembic) for more info.
+
+### Secret Key
 
 Create `SECRET_KEY` by:
 
