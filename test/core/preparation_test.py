@@ -19,13 +19,6 @@ def test_create_defined_user():
     data = response.json()
     assert data["email"] == email
     assert "id" in data
-    user_id = data["id"]
-
-    response = client.get(f"{settings.API_PREFIX}{local_prefix}{user_id}")
-    assert response.status_code == 200, response.text
-    data = response.json()
-    assert data["email"] == email
-    assert data["id"] == user_id
 
 
 def test_login_with_wrong_user():

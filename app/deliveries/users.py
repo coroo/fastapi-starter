@@ -43,7 +43,9 @@ async def read_users_me(
 @router.post(local_prefix, response_model=user_schema.User)
 def create_user(
         user: user_schema.UserCreate,
-        db: Session = Depends(deps.get_db)
+        db: Session = Depends(deps.get_db),
+        current_user: user_schema.User = Depends(
+            auth.get_current_active_user)
         ):
     db_user = user_usecase.get_user_by_email(db, email=user.email)
     if db_user:
@@ -56,7 +58,9 @@ def create_user(
 @router.get(local_prefix, response_model=List[user_schema.User])
 def read_users(
         commons: dict = Depends(di.common_parameters),
-        db: Session = Depends(deps.get_db)
+        db: Session = Depends(deps.get_db),
+        current_user: user_schema.User = Depends(
+            auth.get_current_active_user)
         ):
     users = user_usecase.get_users(
         db, skip=commons['skip'], limit=commons['limit'])
@@ -66,7 +70,9 @@ def read_users(
 @router.get(local_prefix+"{user_id}", response_model=user_schema.User)
 def read_user(
             user_id: str,
-            db: Session = Depends(deps.get_db)
+            db: Session = Depends(deps.get_db),
+            current_user: user_schema.User = Depends(
+                auth.get_current_active_user)
         ):
     db_user = user_usecase.get_user(db, user_id=user_id)
     if db_user is None:
