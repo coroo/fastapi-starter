@@ -28,7 +28,8 @@ async def login(
     access_token = auth.create_access_token(
         data={"sub": user.email}, expires_delta=access_token_expires
     )
-    return {"access_token": access_token, "token_type": "bearer"}
+    return {"access_token": access_token,
+            "token_type": "bearer"}
 
 
 @router.get(local_prefix+"me/", response_model=user_schema.User)
