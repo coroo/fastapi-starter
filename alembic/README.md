@@ -32,5 +32,5 @@ PYTHONPATH=. alembic upgrade ae10+2
 
 With the environment in place we can create a new revision, using `alembic revision`, here the example:
 ```
-alembic revision -m "create items table"
+PYTHONPATH=. alembic revision -m "create items table"
 ```
