@@ -1,4 +1,6 @@
 import uvicorn
+import logging
+import os
 
 from fastapi import Depends, FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -8,9 +10,16 @@ from app.deliveries import items, users
 from env import settings
 
 from app.utils import metadata
+from datetime import datetime
 
-# will delete in future, since use alembic migration
-# Base.metadata.create_all(bind=engine)
+if not os.path.exists("storage"):
+    os.mkdir("storage")
+    if not os.path.exists("storage/logs"):
+        os.mkdir("storage/logs")
+
+log_filename = 'storage/logs/{:%Y-%m-%d}.log'.format(datetime.now())
+logging.basicConfig(filename=log_filename, level=logging.ERROR,
+                    format='%(asctime)s: [%(levelname)s] - %(message)s')
 
 app = FastAPI(title=settings.APP_NAME,
               description=settings.APP_DESCRIPTION,
@@ -47,6 +56,7 @@ if __name__ == "__main__":
         app_reload = True
     uvicorn.run(
         "main:app",
+        log_level=settings.LOG_LEVEL,
         host=settings.APP_HOST,
         port=settings.APP_PORT,
         reload=app_reload)

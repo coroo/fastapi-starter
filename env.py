@@ -10,6 +10,9 @@ class Settings(BaseSettings):
     APP_HOST: str = "0.0.0.0"
     APP_PORT: int = 8000
     APP_MODE: str = "development"
+    # available in ['development','production']
+    LOG_LEVEL: str = "info"
+    # available in ['critical', 'error', 'warning', 'info', 'debug', 'trace']
     SECRET_KEY: str = ""
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
 
