@@ -78,6 +78,12 @@ Or see Manual Installation in [here](#manual-installation)
 
 > Useful informations about each kind of http code
 
+## Shortcut to remember the names
+
+> You don't have to memorize what each of these codes mean. You can use the convenience variables from `fastapi.status`
+
+![status_code](https://fastapi.tiangolo.com/img/tutorial/response-status-code/image02.png)
+
 ## List of codes
 
 The list is separated by kind.
