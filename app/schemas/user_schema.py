@@ -20,5 +20,9 @@ class User(UserBase):
         orm_mode = True
 
 
+class UserId(BaseModel):
+    id: str
+
+
 class UserInDB(User):
     hashed_password: str

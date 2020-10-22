@@ -22,3 +22,30 @@ def create_user_item(db: Session, item: item_schema.ItemCreate, user_id: str):
     db.commit()
     db.refresh(db_item)
     return db_item
+
+
+def update_item(db: Session, item: item_schema.ItemCreate, item_id: int):
+    db.query(
+        item_model.Item
+    ).filter(
+        item_model.Item.id == item_id
+    ).update({
+        item_model.Item.title: item.title,
+        item_model.Item.description: item.description,
+    })
+
+    db.commit()
+    return db.query(
+        item_model.Item
+    ).filter(item_model.Item.id == item_id).first()
+
+
+def delete_item(db: Session, item_id: int):
+    db_item = db.query(
+        item_model.Item
+    ).filter(item_model.Item.id == item_id).first()
+    # use this one for hard delete:
+    db.delete(db_item)
+
+    db.commit()
+    return db_item

@@ -7,6 +7,10 @@ class ItemBase(BaseModel):
     description: Optional[str] = None
 
 
+class ItemId(BaseModel):
+    id: int
+
+
 class ItemCreate(ItemBase):
     pass
 

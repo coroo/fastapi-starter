@@ -55,15 +55,29 @@ def create_user(
     return user_usecase.create_user(db=db, user=user)
 
 
+@router.put(local_prefix+"{user_id}", response_model=user_schema.User)
+def update_user(
+            user_id: str,
+            user: user_schema.UserCreate,
+            db: Session = Depends(deps.get_db)
+        ):
+    db_user = user_usecase.get_user(db, user_id=user_id)
+    if db_user is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+    return user_usecase.update_user(db=db, user=user, user_id=user_id)
+
+
 @router.get(local_prefix, response_model=List[user_schema.User])
 def read_users(
         commons: dict = Depends(di.common_parameters),
+        active: bool = True,
         db: Session = Depends(deps.get_db),
         current_user: user_schema.User = Depends(
             auth.get_current_active_user)
         ):
     users = user_usecase.get_users(
-        db, skip=commons['skip'], limit=commons['limit'])
+        db, skip=commons['skip'], limit=commons['limit'], active=active)
     return users
 
 
@@ -79,3 +93,15 @@ def read_user(
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
     return db_user
+
+
+@router.delete(local_prefix, response_model=user_schema.User)
+def delete_user(
+            user: user_schema.UserId,
+            db: Session = Depends(deps.get_db)
+        ):
+    db_user = user_usecase.get_user(db, user_id=user.id)
+    if db_user is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+    return user_usecase.delete_user(db=db, user_id=user.id)
