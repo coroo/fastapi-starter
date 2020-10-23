@@ -41,11 +41,9 @@ def update_item(db: Session, item: item_schema.ItemCreate, item_id: int):
 
 
 def delete_item(db: Session, item_id: int):
-    db_item = db.query(
-        item_model.Item
-    ).filter(item_model.Item.id == item_id).first()
     # use this one for hard delete:
-    db.delete(db_item)
-
+    db.query(
+        item_model.Item
+    ).filter(item_model.Item.id == item_id).delete()
     db.commit()
-    return db_item
+    return True

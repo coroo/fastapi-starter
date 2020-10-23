@@ -1,7 +1,7 @@
 from fastapi import Depends, APIRouter, HTTPException, status
 from typing import List
 from sqlalchemy.orm import Session
-from app.schemas import item_schema
+from app.schemas import item_schema, general_schema
 from app.usecases import item_usecase
 from app.middlewares import deps, di
 
@@ -53,7 +53,7 @@ def read_item(item_id: int, db: Session = Depends(deps.get_db)):
     return db_item
 
 
-@router.delete(local_prefix, response_model=item_schema.Item)
+@router.delete(local_prefix, response_model=general_schema.Delete)
 def delete_item(
             item: item_schema.ItemId,
             db: Session = Depends(deps.get_db)
@@ -62,4 +62,5 @@ def delete_item(
     if db_item is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="Item not found")
-    return item_usecase.delete_item(db=db, item_id=item.id)
+    item_usecase.delete_item(db=db, item_id=item.id)
+    return {"id": item.id}
