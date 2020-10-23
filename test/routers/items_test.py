@@ -6,8 +6,10 @@ from main import app
 
 client = TestClient(app)
 fake = Faker()
+local_prefix = "/items/"
 
 fake_name = fake.name()
+fake_name_2 = fake.name()
 fake_description = fake.address()
 
 
@@ -34,6 +36,8 @@ def test_func_items():
     assert response.status_code == 200, response.text
     data = response.json()
     assert data['id'] is not None
+    assert "id" in data
+    item_id = data["id"]
 
     # READ ITEMS
     response = client.get(settings.API_PREFIX+"/items/",
@@ -45,7 +49,41 @@ def test_func_items():
                           headers=headers,)
     assert response.status_code == 200
 
+    # UPDATE ITEM
+    response = client.put(
+        f"{settings.API_PREFIX}{local_prefix}{item_id}",
+        json={"title": fake_name_2, "description": fake_description},
+    )
+    assert response.status_code == 200, response.text
+    data = response.json()
+    assert data["title"] != fake_name
+    assert data["title"] == fake_name_2
+
+    # DELETE ITEM
+    response = client.delete(
+        f"{settings.API_PREFIX}{local_prefix}",
+        json={"id": item_id},
+    )
+    assert response.status_code == 200
+
+    # NEGATIVE TEST
+    wrong_id = 90123801902930923  # just random id
+
+    # UPDATE ITEM
+    response = client.put(
+        f"{settings.API_PREFIX}{local_prefix}{wrong_id}",
+        json={"title": fake_name_2, "description": fake_description},
+    )
+    assert response.status_code == 404, response.text
+
+    # DELETE ITEM
+    response = client.delete(
+        f"{settings.API_PREFIX}{local_prefix}",
+        json={"id": wrong_id},
+    )
+    assert response.status_code == 404
+
     # READ NOT EXIST ITEM
-    response = client.get(settings.API_PREFIX+"/items/987654321",
+    response = client.get(f"{settings.API_PREFIX}{local_prefix}{item_id}",
                           headers=headers,)
     assert response.status_code == 404

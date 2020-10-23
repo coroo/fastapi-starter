@@ -13,6 +13,7 @@ local_prefix = "/users/"
 
 fake_email = fake.email()
 fake_name = fake.name()
+fake_name_2 = fake.name()
 fake_password = fake.password()
 
 
@@ -55,13 +56,48 @@ def test_create_user():
     assert data["email"] == fake_email
     assert data["id"] == user_id
 
+    # UPDATE USER
+    response = client.put(
+        f"{settings.API_PREFIX}{local_prefix}{user_id}",
+        json={"email": fake_email, "full_name": fake_name_2,
+              "password": fake_password},
+    )
+    assert response.status_code == 200, response.text
+    data = response.json()
+    assert data["full_name"] != fake_name
+    assert data["full_name"] == fake_name_2
+
+    # DELETE USER
+    response = client.delete(
+        f"{settings.API_PREFIX}{local_prefix}",
+        json={"id": user_id},
+    )
+    assert response.status_code == 200
+
+    # NEGATIVE TEST
+    wrong_id = 'just-wrong-uuiid'
+
+    # UPDATE USER DOESNT EXIST
+    response = client.put(
+        f"{settings.API_PREFIX}{local_prefix}{wrong_id}",
+        json={"email": fake_email, "full_name": fake_name_2,
+              "password": fake_password},
+    )
+    assert response.status_code == 404, response.text
+
+    # DELETE USER NOT EXIST
+    response = client.delete(
+        f"{settings.API_PREFIX}{local_prefix}",
+        json={"id": wrong_id},
+    )
+    assert response.status_code == 404
+
 
 def test_create_token():
     response = client.post(
         settings.API_PREFIX+local_prefix+"token",
         data={"username": fake_email, "password": fake_password},
     )
-
     assert response.status_code == 200, response.text
     token_data = response.json()
     assert token_data['token_type'] is not None
