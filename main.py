@@ -8,7 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.routers.api import api
 from env import settings
 
-from app.utils import metadata
+from app.utils.metadata import tags
 from datetime import datetime
 
 if not os.path.exists("storage"):
@@ -23,7 +23,9 @@ logging.basicConfig(filename=log_filename, level=logging.ERROR,
 app = FastAPI(title=settings.APP_NAME,
               description=settings.APP_DESCRIPTION,
               version=settings.APP_VERSION,
-              openapi_tags=metadata.tags)
+              openapi_tags=tags,
+              docs_url=settings.LINK_DOCS,
+              redoc_url=settings.LINK_REDOC,)
 
 app.add_middleware(
     CORSMiddleware,

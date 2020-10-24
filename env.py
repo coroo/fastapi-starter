@@ -24,7 +24,11 @@ class Settings(BaseSettings):
     DB_USERNAME: str = "root"
     DB_PASSWORD: str = "root_pass"
 
-    # ALLOWED ORIGINS
+    # DOCUMENTATION
+    LINK_DOCS: str = "/docs"
+    LINK_REDOC: str = "/redoc"
+
+    # SECURITY
     ALLOWED_ORIGINS: str = "http://localhost:8080,http://127.0.0.1:8080"
 
     class Config:
