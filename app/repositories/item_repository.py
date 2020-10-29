@@ -1,10 +1,11 @@
 from sqlalchemy.orm import Session
 
+from app.interfaces.api_interfaces import RepositoryInterface
 from app.models import item_model
 from app.schemas import item_schema
 
 
-class ItemRepository:
+class ItemRepository(RepositoryInterface):
 
     def reads(db: Session, skip: int = 0, limit: int = 100):
         return db.query(

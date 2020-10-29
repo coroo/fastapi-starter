@@ -1,10 +1,11 @@
 from sqlalchemy.orm import Session
 
+from app.interfaces.api_interfaces import ServiceInterface
 from app.repositories.user_repository import UserRepository
 from app.schemas import user_schema
 
 
-class UserService:
+class UserService(ServiceInterface):
 
     def read(db: Session, user_id: int):
         return UserRepository.read(db, user_id=user_id)

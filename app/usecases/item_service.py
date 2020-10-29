@@ -1,9 +1,11 @@
 from sqlalchemy.orm import Session
+
+from app.interfaces.api_interfaces import ServiceInterface
 from app.repositories.item_repository import ItemRepository
 from app.schemas import item_schema
 
 
-class ItemService:
+class ItemService(ServiceInterface):
 
     def reads(db: Session, skip: int = 0, limit: int = 100):
         return ItemRepository.reads(db, skip=skip, limit=limit)

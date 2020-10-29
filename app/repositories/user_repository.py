@@ -1,12 +1,13 @@
 from sqlalchemy.orm import Session
 
+from app.interfaces.api_interfaces import RepositoryInterface
 from app.models import user_model
 from app.schemas import user_schema
 from app.utils.hash import create_hashing
 from app.utils.uuid import generate_uuid
 
 
-class UserRepository:
+class UserRepository(RepositoryInterface):
 
     def read(db: Session, user_id: int):
         return db.query(
