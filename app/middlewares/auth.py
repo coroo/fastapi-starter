@@ -11,7 +11,7 @@ from app.middlewares.deps import get_db
 from app.schemas.user_schema import User
 from app.schemas.token_schema import TokenData
 from app.utils.hash import verify_hassing
-from app.usecases import user_usecase
+from app.usecases.user_service import UserService
 
 # to get a string like this run:
 # openssl rand -hex 32
@@ -28,7 +28,7 @@ oauth2_scheme = OAuth2PasswordBearer(
 
 
 def authenticate_user(db, email: str, password: str):
-    user = user_usecase.get_user_by_email(db, email)
+    user = UserService.read_by_email(db, email)
     if not user:
         return False
     if not verify_hassing(password, user.hashed_password):
@@ -61,7 +61,7 @@ async def get_current_user(
         token_data = TokenData(email=email)
     except JWTError:
         raise credentials_exception
-    user = user_usecase.get_user_by_email(db, email=token_data.email)
+    user = UserService.read_by_email(db, email=token_data.email)
     if user is None:
         raise credentials_exception
     return user

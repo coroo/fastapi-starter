@@ -74,6 +74,13 @@ Or see Manual Installation in [here](#manual-installation)
 > And now, go to [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 > You will see the alternative automatic documentation (provided by ReDoc)
 
+## :pencil: Typography
+
+Since we use python, we use `Snake Case` for naming convention. But please note that snake_case not belongs to:
+
+- `Class names` MUST be declared in StudlyCaps (ie: PascalCase).
+
+
 ## :traffic_light: Http Status Codes
 
 > Useful informations about each kind of http code
