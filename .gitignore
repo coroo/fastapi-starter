@@ -3,6 +3,9 @@
 logs
 .pylintrc
 
+# Alembic
+/alembic/versions/*_create_items_table.py
+
 # Docker
 mysql/*
 
