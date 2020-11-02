@@ -1,9 +1,6 @@
-name: Latest Changes
+name: latest changes
 
 on:
-  push:
-    branches: 
-      - '*'         # matches every branch that doesn't contain a '/'
   pull_request_target:
     branches:
       - '*'
