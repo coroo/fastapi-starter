@@ -1,6 +1,7 @@
 # Fast Api - Base Architecture
 
 [![ci](https://github.com/coroo/base-architecture/workflows/ci/badge.svg?branch=master)](../../actions)
+![latest changes](https://github.com/coroo/base-architecture/workflows/latest%20changes/badge.svg?branch=master)
 
 :bulb: This architecture use the domain layer concept of [laravel](https://laravel.com/) from PHP, [rails](https://rubyonrails.org/) from Ruby and [clean-architecture](https://github.com/bxcodec/go-clean-arch#the-diagram) from Golang . By using this architecture, we hope that you don't need to create FastApi from scratch again. Then you can focus on your development with our standardized pattern.
 
