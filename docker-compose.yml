@@ -4,7 +4,7 @@ services:
   app:
     build: .
     ports:
-      - "8000:8000"
+      - ${APP_PORT}:${APP_PORT}
     env_file:
       - .env
     depends_on:
@@ -14,7 +14,7 @@ services:
   mysql:
     image: mysql:latest
     ports:
-      - 8083:3306
+      - 8083:${DB_PORT}
     volumes:
       - ./mysql:/var/lib/mysql
     env_file:
