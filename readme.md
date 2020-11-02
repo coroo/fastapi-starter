@@ -1,4 +1,4 @@
-# Fast Api - Base Architecture
+# Fast Api - Base Architecture tambah s
 
 [![ci](https://github.com/coroo/base-architecture/workflows/ci/badge.svg?branch=master)](../../actions)
 
