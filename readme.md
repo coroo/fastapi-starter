@@ -34,10 +34,6 @@
 
 ---
 
-### Latest Changes
-
-
-
 ## :computer: Setup & Installation
 
 ### Database Migrations
@@ -167,3 +163,8 @@ pytest --cov=app --cov-config=.ignorecoveragerc --cov-report html test/
 ```console
 python3 main.py
 ```
+
+---
+
+### Latest Changes
+
