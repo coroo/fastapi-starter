@@ -3,7 +3,7 @@ name: latest changes
 on:
   pull_request_target:
     branches:
-      - master
+      - develop
     types:
       - closed
   # For manually triggering it
