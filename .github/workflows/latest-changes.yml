@@ -3,7 +3,7 @@ name: latest changes
 on:
   pull_request_target:
     branches:
-      - 'test_worklow'
+      - 'test_workflow'
     types:
       - closed
   # For manually triggering it
