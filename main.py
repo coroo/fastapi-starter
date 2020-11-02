@@ -5,7 +5,7 @@ import os
 from fastapi import FastAPI, Header, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers.api import api
+from app.routes.api import api
 from env import settings
 
 from app.utils.metadata import tags

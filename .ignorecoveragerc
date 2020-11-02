@@ -1,2 +1,2 @@
 [run]
-    omit = app/middlewares/deps.py, app/middlewares/auth.py
+    omit = app/middlewares/deps.py, app/middlewares/auth.py, app/interfaces/api_interfaces.py
