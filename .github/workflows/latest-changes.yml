@@ -1,11 +1,12 @@
 name: Latest Changes
 
 on:
+  push:
+    branches: 
+      - '*'         # matches every branch that doesn't contain a '/'
   pull_request_target:
     branches:
-      - main
-      # Or use the branch "master" if that's your main branch:
-      # - master
+      - '*'
     types:
       - closed
   # For manually triggering it
