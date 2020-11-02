@@ -6,12 +6,13 @@ import pytest
 from main import app
 
 client = TestClient(app)
+# DEFINE MOCK DATA
 fake = Faker()
-local_prefix = "/items/"
-
 fake_name = fake.name()
 fake_name_2 = fake.name()
 fake_description = fake.address()
+
+local_prefix = "/items/"
 
 
 class TestItems():
