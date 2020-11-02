@@ -84,14 +84,12 @@ Since we use python, we use `Snake Case` for naming convention. But please note 
 ## :zap: Unit Test
 
 For unit test, we only do 3 unit test:
-- Feature Unit Test
-For feature unit testing you need to follow [items testcase](test/routes/items_test.py). That is the example of unit test and you can easily copy paste and rename some prefix.
-
-- Usecase Interface Unit Test
-For usecase interface unit testing you just need to edit [usecase interface testcase file](test/interfaces/service_interface_test.py). You need to call your service/usecase ([how to?](test/interfaces/service_interface_test.py#L5)) and create check subclass unit test ([how to?](test/interfaces/service_interface_test.py#L9-L10))
-
-- Repository Interface Unit Test
-Almost same with usecase interface, for repository interface unit testing you just need to edit [repository interface testcase file](test/interfaces/repository_interface_test.py). You need to call your repository ([how to?](test/interfaces/repository_interface_test.py#L5)) and create check subclass unit test ([how to?](test/interfaces/repository_interface_test.py#L9-L10))
+- **Feature Unit Test**
+    - For feature unit testing you need to follow [items testcase](test/routes/items_test.py). That is the example of unit test and you can easily copy paste and rename some prefix.
+- **Usecase Interface Unit Test**
+    - For usecase interface unit testing you just need to edit [usecase interface testcase file](test/interfaces/service_interface_test.py). You need to call your service/usecase ([how to?](test/interfaces/service_interface_test.py#L5)) and create check subclass unit test ([how to?](test/interfaces/service_interface_test.py#L9-L10))
+- **Repository Interface Unit Test**
+    - Almost same with usecase interface, for repository interface unit testing you just need to edit [repository interface testcase file](test/interfaces/repository_interface_test.py). You need to call your repository ([how to?](test/interfaces/repository_interface_test.py#L5)) and create check subclass unit test ([how to?](test/interfaces/repository_interface_test.py#L9-L10))
 
 ## :traffic_light: Http Status Codes
 
