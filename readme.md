@@ -34,6 +34,10 @@
 
 ---
 
+### Latest Changes
+
+
+
 ## :computer: Setup & Installation
 
 ### Database Migrations
