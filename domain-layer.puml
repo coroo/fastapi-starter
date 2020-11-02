@@ -1,0 +1,43 @@
+@startuml base-architecture
+left to right direction
+skinparam packageStyle rect
+component "Web" as web
+component "RPC" as grpc
+cloud "REST" as rest
+database "MySQL" as database
+usecase "External Services" as microservice << Microservice >>
+package "Base Architecture" as backend {    
+    usecase "API" as route << Route >>
+    usecase "Controller" as delivery << Delivery >>
+    usecase "Business Logic" as (usecase) << Usecase >>
+    usecase "Repository" as repository
+    usecase "Interface" as interface
+    usecase "Model" as model
+    usecase "Schema" as schema
+}
+
+grpc --> (route)
+rest --> (route)
+web --> (route)
+(route) --> (delivery)
+(delivery) <--> (usecase)
+(usecase) <--> (repository)
+(schema) <.> (usecase)
+(schema) <.> (delivery)
+(model) <.> (repository)
+(repository) <-- database
+(repository) <-- microservice
+(interface) <.> (repository)
+(interface) <.> (usecase)
+
+skinparam componentBorderColor LightSkyBlue
+skinparam componentBackgroundColor LightSkyBlue
+skinparam CloudBackgroundColor LightSkyBlue
+skinparam usecase {
+    BorderColor BUSINESS
+    BackgroundColor<< Microservice >> Azure
+    BorderColor<< Microservice >> Azure
+}
+skinparam databaseBackgroundColor Azure
+
+@enduml
