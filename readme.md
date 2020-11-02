@@ -30,7 +30,7 @@
 
 ## :pushpin: Domain Layer
 
-![diagram](https://github.com/bxcodec/go-clean-arch/raw/master/clean-arch.png)
+![diagram](out/domain-layer/base-architecture.png)
 
 ---
 
