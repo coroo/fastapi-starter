@@ -6,11 +6,15 @@ name: ci
 on:
   push:
     branches: 
-      - '*'         # matches every branch that doesn't contain a '/'
+      - '*'
+    paths:
+    - '**.py'
   pull_request:
     branches: 
       - 'master'
-      - 'develop'    # matches every branch that doesn't contain a '/'
+      - 'develop'
+    paths:
+    - '**.py'
 
 jobs:
   build:
