@@ -91,6 +91,19 @@ For unit test, we only do 3 unit test:
 - **Repository Interface Unit Test**
     - Almost same with usecase interface, for repository interface unit testing you just need to edit [repository interface testcase file](test/interfaces/repository_interface_test.py). You need to call your repository ([how to?](test/interfaces/repository_interface_test.py#L5)) and create check subclass unit test ([how to?](test/interfaces/repository_interface_test.py#L9-L10))
 
+### Run Unit Test
+
+```console
+pytest
+
+# Check Coverage
+pytest --cov=app --cov-config=.ignorecoveragerc test/
+
+# Create Coverage Report
+pytest --cov=app --cov-config=.ignorecoveragerc --cov-report html test/
+```
+    
+
 ## :traffic_light: Http Status Codes
 
 > Useful informations about each kind of http code
@@ -134,16 +147,6 @@ This means that even though the request appeared to be valid something went wron
 
 ---
 
-## Detail
-
-For any X-Token Need, please use:
-
-```
-fake-super-secret-token
-```
-
----
-
 ## Manual Installation
 
 Dependencies Installation
@@ -154,21 +157,7 @@ pip3 install -r requirements.txt
 
 ---
 
-### Unit Test
-
-```console
-pytest
-
-# Check Coverage
-pytest --cov=app --cov-config=.ignorecoveragerc test/
-
-# Create Coverage Report
-pytest --cov=app --cov-config=.ignorecoveragerc --cov-report html test/
-```
-
----
-
-### Run App
+### Manual Run App
 
 ```console
 python3 main.py
