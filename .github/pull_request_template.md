@@ -1,4 +1,5 @@
 <!--- PLEASE NOTE --->
+<!--- For naming PR title, please follow instruction at out/pull_request.md#heart_eyes_cat-emoji-for-pr-title --->
 <!--- You only need to change clickup link below and update description in description box --->
 
 ### :pushpin: Clickup Link: https://xxxx.xxxx.xx
