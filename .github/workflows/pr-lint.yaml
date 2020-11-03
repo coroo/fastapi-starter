@@ -1,0 +1,20 @@
+name: PR lint
+
+on:
+  pull_request:
+    # By default, a workflow only runs when a pull_request's activity type is opened, synchronize, or reopened. We
+    # explicity override here so that PR titles are re-linted when the PR text content is edited.
+    #
+    # Possible values: https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request
+    types: [opened, edited, reopened]
+
+jobs:
+  pr-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: morrisoncole/pr-lint-action@v1.4.1
+        with:
+          title-regex: "(:art:|:zap:|:fire:|:bug:|:ambulance:|:sparkles:|:memo:|:rocket:|:lipstick:|:tada:|:white_check_mark:|:lock:|:bookmark:|:rotating_light:|:construction:|:green_heart:|:arrow_down:|:arrow_up:|:pushpin:|:construction_worker:|:chart_with_upwards_trend:|:recycle:|:heavy_plus_sign:|:heavy_minus_sign:|:wrench:|:hammer:|:globe_with_meridians:|:pencil2:|:poop:|:rewind:|:twisted_rightwards_arrows:|:package:|:alien:|:truck:|:page_facing_up:|:boom:|:bento:|:wheelchair:|:bulb:|:beers:|:speech_balloon:|:card_file_box:|:loud_sound:|:mute:|:busts_in_silhouette:|:children_crossing:|:building_construction:|:iphone:|:clown_face:|:egg:|:see_no_evil:|:camera_flash:|:alembic:|:mag:|:label:|:seedling:|:triangular_flag_on_post:|:goal_net:|:dizzy:|:wastebasket:|:passport_control)(\\([a-z0-9\\s]+\\))?([a-z0-9\\s]+)"
+          on-failed-regex-comment:
+            "Please fix your **PR title** based on [this guide](../blob/master/out/pull_request.md#heart_eyes_cat-emoji-for-pr-title). <br/>example: ```:rocket: Flying with you```<br/><br/>Failed regex: `%regex%`!"
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
