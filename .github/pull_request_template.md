@@ -13,7 +13,7 @@ example: By this pull request, I'm sure that we can have a great product feature
 <!--- Thank You --->
 
 <!--- For naming PR title, please follow instruction at out/pull_request.md#heart_eyes_cat-emoji-for-pr-title --->
-<br/>[[View PR Documentation]](/out/pull_request.md#heart_eyes_cat-emoji-for-pr-title)
+<br/>[[View PR Documentation]](../blob/master/out/pull_request.md#heart_eyes_cat-emoji-for-pr-title)
 
 -----
 
