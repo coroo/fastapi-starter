@@ -2,7 +2,7 @@ from sqlalchemy.orm import Session
 
 from app.interfaces.api_interfaces import ServiceInterface
 from app.repositories.item_repository import ItemRepository as repository
-from app.schemas import item_schema
+from app.schemas import item_schema as schema
 
 
 class ItemService(ServiceInterface):
@@ -14,14 +14,14 @@ class ItemService(ServiceInterface):
         return repository.read(db, item_id=item_id)
 
     def create(db: Session,
-               item: item_schema.ItemCreate,
+               item: schema.ItemCreate,
                user_id: int):
         return repository.create(
             db=db,
             item=item,
             user_id=user_id)
 
-    def update(db: Session, item: item_schema.ItemCreate, item_id: int):
+    def update(db: Session, item: schema.ItemCreate, item_id: int):
         return repository.update(db=db, item=item, item_id=item_id)
 
     def delete(db: Session, item_id: str):
