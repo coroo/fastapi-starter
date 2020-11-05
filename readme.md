@@ -77,9 +77,11 @@ Or see Manual Installation in [here](#manual-installation)
 
 ## :pencil: Typography
 
-Since we use python, we use `Snake Case` for naming convention. But please note that snake_case not belongs to:
+Since we use python, we use **Snake Case** for naming convention. But please note that snake_case not belongs to:
 
-- `Class names` MUST be declared in StudlyCaps (ie: PascalCase).
+- `Class names` **MUST** be declared in StudlyCaps (ie: PascalCase).
+- `PR title/description` **MUST** be use this [PR guide](out/pull_request.md).
+- `ChangeLog` **NO NEED** to update manual. It will automatically created at [Changelog Page](out/changelog.md).
 
 ## :zap: Unit Test
 
