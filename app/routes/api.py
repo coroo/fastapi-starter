@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from app.deliveries import (
         item_controller,
-        user_controller
+        user_controller,
     )
 from app.middlewares import auth
 
