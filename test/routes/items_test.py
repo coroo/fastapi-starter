@@ -39,6 +39,7 @@ class TestItems():
         # NEGATIVE TEST
         self.wrong_id = 912093018209302910
 
+    @pytest.fixture(autouse=True)
     def test_create(self):
         response = client.post(
             settings.API_PREFIX+"/users/1"+local_prefix,
@@ -50,24 +51,24 @@ class TestItems():
     @pytest.fixture(autouse=True)
     def test_get(self):
         # READ ITEMS
-        response = client.post(
-            settings.API_PREFIX+"/users/1"+local_prefix,
+        response = client.get(
+            settings.API_PREFIX+local_prefix,
             headers=self.headers,
-            json={"title": fake_name, "description": fake_description},
         )
         assert response.status_code == 200, response.text
         data = response.json()
-        assert data['id'] is not None
-        assert "id" in data
-        self.id_test = data['id']
+        assert data[0]['id'] is not None
+        assert "id" in data[0]
+        self.id_test = data[0]['id']
 
         response = client.get(settings.API_PREFIX+local_prefix,
                               headers=self.headers,)
         assert response.status_code == 200
 
         # READ ITEM
-        response = client.get(settings.API_PREFIX+local_prefix+str(data['id']),
-                              headers=self.headers,)
+        response = client.get(
+            settings.API_PREFIX+local_prefix+str(data[0]['id']),
+            headers=self.headers,)
         assert response.status_code == 200
 
     def test_update(self):
