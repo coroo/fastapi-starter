@@ -42,7 +42,7 @@ class TestItems():
     def test_create(self):
         response = client.post(
             settings.API_PREFIX+"/users/1/items/",
-            headers={"X-Token": "fake-super-secret-token"},
+            headers=self.headers,
             json={"title": fake_name, "description": fake_description},
         )
         assert response.status_code == 200, response.text
