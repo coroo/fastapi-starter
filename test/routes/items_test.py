@@ -41,7 +41,7 @@ class TestItems():
 
     def test_create(self):
         response = client.post(
-            settings.API_PREFIX+"/users/1/items/",
+            settings.API_PREFIX+"/users/1"+local_prefix,
             headers=self.headers,
             json={"title": fake_name, "description": fake_description},
         )
@@ -51,7 +51,7 @@ class TestItems():
     def test_get(self):
         # READ ITEMS
         response = client.post(
-            settings.API_PREFIX+"/users/1/items/",
+            settings.API_PREFIX+"/users/1"+local_prefix,
             headers=self.headers,
             json={"title": fake_name, "description": fake_description},
         )
@@ -61,12 +61,12 @@ class TestItems():
         assert "id" in data
         self.id_test = data['id']
 
-        response = client.get(settings.API_PREFIX+"/items/",
+        response = client.get(settings.API_PREFIX+local_prefix,
                               headers=self.headers,)
         assert response.status_code == 200
 
         # READ ITEM
-        response = client.get(settings.API_PREFIX+"/items/"+str(data['id']),
+        response = client.get(settings.API_PREFIX+local_prefix+str(data['id']),
                               headers=self.headers,)
         assert response.status_code == 200
 
