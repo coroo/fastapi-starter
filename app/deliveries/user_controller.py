@@ -5,7 +5,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 
 from sqlalchemy.orm import Session
 from app.schemas import user_schema, token_schema
-from app.usecases.user_service import UserService
+from app.usecases.user_service import UserService as usecase
 from app.middlewares import deps, di, auth
 
 router = APIRouter()
@@ -51,12 +51,12 @@ class UserController():
             current_user: user_schema.User = Depends(
                 auth.get_current_active_user)
             ):
-        db_user = UserService.read_by_email(db, email=user.email)
+        db_user = usecase.read_by_email(db, email=user.email)
         if db_user:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail="Email already registered")
-        return UserService.create(db=db, user=user)
+        return usecase.create(db=db, user=user)
 
     @router.put(local_prefix+"{user_id}", response_model=user_schema.User)
     def update_user(
@@ -64,11 +64,11 @@ class UserController():
                 user: user_schema.UserCreate,
                 db: Session = Depends(deps.get_db)
             ):
-        db_user = UserService.read(db, user_id=user_id)
+        db_user = usecase.read(db, user_id=user_id)
         if db_user is None:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
-        return UserService.update(db=db, user=user, user_id=user_id)
+        return usecase.update(db=db, user=user, user_id=user_id)
 
     @router.get(local_prefix, response_model=List[user_schema.User])
     def read_users(
@@ -78,7 +78,7 @@ class UserController():
             current_user: user_schema.User = Depends(
                 auth.get_current_active_user)
             ):
-        users = UserService.reads(
+        users = usecase.reads(
             db, skip=commons['skip'], limit=commons['limit'], active=active)
         return users
 
@@ -89,7 +89,7 @@ class UserController():
                 current_user: user_schema.User = Depends(
                     auth.get_current_active_user)
             ):
-        db_user = UserService.read(db, user_id=user_id)
+        db_user = usecase.read(db, user_id=user_id)
         if db_user is None:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
@@ -100,8 +100,8 @@ class UserController():
                 user: user_schema.UserId,
                 db: Session = Depends(deps.get_db)
             ):
-        db_user = UserService.read(db, user_id=user.id)
+        db_user = usecase.read(db, user_id=user.id)
         if db_user is None:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
-        return UserService.delete(db=db, user_id=user.id)
+        return usecase.delete(db=db, user_id=user.id)

@@ -39,7 +39,6 @@ class TestItems():
         # NEGATIVE TEST
         self.wrong_id = 912093018209302910
 
-    @pytest.fixture(autouse=True)
     def test_create(self):
         response = client.post(
             settings.API_PREFIX+"/users/1"+local_prefix,
@@ -48,9 +47,8 @@ class TestItems():
         )
         assert response.status_code == 200, response.text
 
-    @pytest.fixture(autouse=True)
     def test_get(self):
-        # READ ITEMS
+        # PREPARATION GET ID
         response = client.get(
             settings.API_PREFIX+local_prefix,
             headers=self.headers,
@@ -65,13 +63,27 @@ class TestItems():
                               headers=self.headers,)
         assert response.status_code == 200
 
-        # READ ITEM
         response = client.get(
             settings.API_PREFIX+local_prefix+str(data[0]['id']),
             headers=self.headers,)
         assert response.status_code == 200
 
     def test_update(self):
+        # PREPARATION GET ID
+        response = client.get(
+            settings.API_PREFIX+local_prefix,
+            headers=self.headers,
+        )
+        assert response.status_code == 200, response.text
+        data = response.json()
+        assert data[0]['id'] is not None
+        assert "id" in data[0]
+        self.id_test = data[0]['id']
+
+        response = client.get(settings.API_PREFIX+local_prefix,
+                              headers=self.headers,)
+        assert response.status_code == 200
+
         response = client.put(
             f"{settings.API_PREFIX}{local_prefix}{self.id_test}",
             json={"title": fake_name_2, "description": fake_description},
@@ -82,6 +94,21 @@ class TestItems():
         assert data["title"] == fake_name_2
 
     def test_delete(self):
+        # PREPARATION GET ID
+        response = client.get(
+            settings.API_PREFIX+local_prefix,
+            headers=self.headers,
+        )
+        assert response.status_code == 200, response.text
+        data = response.json()
+        assert data[0]['id'] is not None
+        assert "id" in data[0]
+        self.id_test = data[0]['id']
+
+        response = client.get(settings.API_PREFIX+local_prefix,
+                              headers=self.headers,)
+        assert response.status_code == 200
+
         response = client.delete(
             f"{settings.API_PREFIX}{local_prefix}",
             json={"id": self.id_test},
