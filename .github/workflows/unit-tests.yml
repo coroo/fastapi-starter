@@ -43,11 +43,12 @@ jobs:
         pytest --cache-clear
     - name: Check test coverage
       run: |
-        if [ -f .ignorecoveragerc ]; then pytest --cache-clear --cov=app --cov-config=.ignorecoveragerc test/; else pytest --cov=app test/; fi
-    - name: Upload pytest test results
+        if [ -f .ignorecoveragerc ]; then pytest --cache-clear --cov=app --cov-config=.ignorecoveragerc --cov-report html test/; else pytest --cov=app test/; fi
+    - name: Store pytest coverage
       uses: actions/upload-artifact@v2
       with:
-        name: pytest-results-${{ matrix.python-version }}
-        path: junit/test-results-${{ matrix.python-version }}.xml
+        name: pytest-coverage-artifact
+        path: |
+          htmlcov
       # Use always() to always run this step to publish test results when there are test failures
       if: ${{ always() }}
