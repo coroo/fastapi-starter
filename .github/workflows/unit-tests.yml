@@ -41,7 +41,12 @@ jobs:
     - name: Test with pytest
       run: |
         pytest --cache-clear
-    - name: Check test coverage
+    - name: Create coverage file
+      run: |
+        if [ -f .ignorecoveragerc ]; then pytest --cache-clear --cov=app --cov-config=.ignorecoveragerc test/ > pytest-coverage.txt; else pytest --cov=app test/; fi
+    - name: Publish coverage results
+      uses: coroo/pytest-coverage-commentator@v1.0.2
+    - name: Create detail test coverage
       run: |
         if [ -f .ignorecoveragerc ]; then pytest --cache-clear --cov=app --cov-config=.ignorecoveragerc --cov-report html test/; else pytest --cov=app test/; fi
     - name: Store pytest coverage
