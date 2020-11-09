@@ -10,6 +10,9 @@
 ```python
 .
 |
+└── alembic                 # My name is Alembic, your database migration manager
+    ├── versions                # Any migration database stored at me.
+    └── README.md               # All related documentation about alembic stored at me, so please read me
 └── app                     # I'm the app folder, that consist of:
     ├── deliveries              # I'm a controller with router, I will delivery your request :)
     ├── middlewares             # I'm a cool middleware, don't me?
@@ -21,6 +24,7 @@
 └── config                  # Config anything ? Write on me then :D
     └── database.py             # You can do database configuration at me. Remember that!
     └── __init__.py             # Nice to meet you again!
+└── out                     # You can place any related documentation at me, e.g. changelog, PR guide, etc.
 └── test                    # Warning! You must create me (unit test) before ask them!
     └── {{all_unit_testing}}
     └── __init__.py
