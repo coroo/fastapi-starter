@@ -12,7 +12,8 @@ local_prefix = "/items/"
 class ItemController():
 
     @router.post("/users/{user_id}"+local_prefix,
-                 response_model=item_schema.Item)
+                 response_model=item_schema.Item,
+                 include_in_schema=False)
     def create_item_for_user(
                 user_id: str,
                 item: item_schema.ItemCreate,
@@ -21,7 +22,8 @@ class ItemController():
         return usecase.create(db=db, item=item, user_id=user_id)
 
     @router.put(local_prefix+"{item_id}",
-                response_model=item_schema.Item)
+                response_model=item_schema.Item,
+                include_in_schema=False)
     def update_item(
                 item_id: int,
                 item: item_schema.ItemCreate,
@@ -34,7 +36,8 @@ class ItemController():
         return usecase.update(db=db, item=item, item_id=item_id)
 
     @router.get(local_prefix,
-                response_model=List[item_schema.Item])
+                response_model=List[item_schema.Item],
+                include_in_schema=False)
     def read_items(
                 commons: dict = Depends(di.common_parameters),
                 db: Session = Depends(deps.get_db)
@@ -47,7 +50,8 @@ class ItemController():
         return items
 
     @router.get(local_prefix+"{item_id}",
-                response_model=item_schema.Item)
+                response_model=item_schema.Item,
+                include_in_schema=False)
     def read_item(item_id: int, db: Session = Depends(deps.get_db)):
         db_item = usecase.read(db, item_id=item_id)
         if db_item is None:
@@ -56,7 +60,8 @@ class ItemController():
         return db_item
 
     @router.delete(local_prefix,
-                   response_model=general_schema.Delete)
+                   response_model=general_schema.Delete,
+                   include_in_schema=False)
     def delete_item(
                 item: item_schema.ItemId,
                 db: Session = Depends(deps.get_db)
