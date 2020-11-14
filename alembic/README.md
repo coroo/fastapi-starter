@@ -35,6 +35,8 @@ With the environment in place we can create a new revision, using `alembic revis
 PYTHONPATH=. alembic revision -m "create items table"
 ```
 
+### Basic Migration
+
 And you can edit file under folder `alembic > versions`
 ```python
 def upgrade():
@@ -47,6 +49,83 @@ def upgrade():
         sa.Column('title', sa.String(100), primary_key=True, index=True),
         sa.Column('description', sa.String(100), primary_key=True),
         sa.Column('owner_id', sa.String(100), primary_key=True),
+    )
+    pass
+
+
+def downgrade():
+    op.drop_table('items')
+    pass
+```
+
+### Migration with seeder
+
+```python
+def upgrade():
+    op.create_table(
+        'items',
+        sa.Column('id', sa.Integer,
+                  primary_key=True,
+                  index=True,
+                  autoincrement=True),
+        sa.Column('title', sa.String(100), primary_key=True, index=True),
+        sa.Column('description', sa.String(100), primary_key=True),
+        sa.Column('owner_id', sa.String(100), primary_key=True),
+    )
+
+    op.bulk_insert(
+        items,
+        [
+            {
+                "id": 1,
+                "title": "super-motor-protection",
+                "description": "Super Motor Protection",
+                "owner_id": 1,
+            },
+        ]
+    )
+    pass
+
+
+def downgrade():
+    op.drop_table('items')
+    pass
+```
+
+### Migration with relationship seeder
+
+```python
+# import uuid for id
+from app.utils.uuid import generate_uuid
+
+def upgrade():
+    op.create_table(
+        'items',
+        sa.Column('id', sa.String(100),
+                  primary_key=True,
+                  index=True,
+                  autoincrement=True),
+        sa.Column('title', sa.String(100), primary_key=True, index=True),
+        sa.Column('description', sa.String(100), primary_key=True),
+        sa.Column('owner_id', sa.String(100), primary_key=True),
+    )
+
+    # use uuid
+    id_random = generate_uuid()
+    # use existing relationship data
+    conn = op.get_bind()
+    res = conn.execute("select id from users WHERE full_name='Admin'")
+    results = res.fetchall()
+    op.bulk_insert(
+        items,
+        [
+            {
+                "id": id_random,
+                "title": "super-motor-protection",
+                "description": "Super Motor Protection",
+                "owner_id": results[0][0],
+            },
+        ]
     )
     pass
 
