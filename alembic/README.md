@@ -4,6 +4,17 @@
 
 > You can view detail documentation [here](https://alembic.sqlalchemy.org/en/latest/tutorial.html)
 
+## First Installation
+
+For first use, please do installation in your command prompt:
+```bash
+pip install alembic
+pip install pydantic[dotenv]
+pip install mysqlclient
+pip install passlib
+PYTHONPATH=. alembic upgrade head
+```
+
 ## How does it work?
 
 Run your migrations by:
