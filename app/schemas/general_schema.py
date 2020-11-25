@@ -8,3 +8,12 @@ class Delete(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class Validation(BaseModel):
+    loc: Optional[str]
+    msg: Optional[str]
+    type: Optional[str]
+
+    class Config:
+        orm_mode = True
