@@ -4,6 +4,8 @@ from app.interfaces.api_interfaces import ServiceInterface
 from app.repositories.item_repository import ItemRepository as repository
 from app.schemas import item_schema as schema
 
+from app.utils.attribute import rsetattr, rgetattr
+
 
 class ItemService(ServiceInterface):
 
@@ -11,7 +13,11 @@ class ItemService(ServiceInterface):
         return repository.reads(db, skip=skip, limit=limit)
 
     def read(db: Session, item_id: int):
-        return repository.read(db, item_id=item_id)
+        item = repository.read(db, item_id=item_id)
+        if item is not None:
+            rsetattr(item, 'authors', {"name": "Kuncoro Wicaksono"})
+            rgetattr(item, 'authors.name', "Kuncoro Wicaksono")
+        return item
 
     def create(db: Session,
                item: schema.ItemCreate,
