@@ -59,6 +59,7 @@ def upgrade():
                   autoincrement=True),
         sa.Column('title', sa.String(100), primary_key=True, index=True),
         sa.Column('description', sa.String(100), primary_key=True),
+        sa.Column('price', sa.Numeric(13, 2), nullable=False),
         sa.Column('owner_id', sa.String(100), primary_key=True),
     )
     pass
