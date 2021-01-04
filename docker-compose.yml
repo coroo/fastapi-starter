@@ -3,19 +3,38 @@ version: '3.7'
 services:
   app:
     build: .
+    expose:
+      - ${APP_PORT}
     ports:
       - ${APP_PORT}:${APP_PORT}
     env_file:
       - .env
     depends_on:
-      - mysql
+      - app_db
     environment:
-      - DB_HOST=host.docker.internal
-  mysql:
-    image: mysql:latest
+      - DB_HOST=app_db
+  app_db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: '${DB_DATABASE}'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: '${DB_USERNAME}'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      # Allow Empty Password
+      MYSQL_ALLOW_EMPTY_PASSWORD: ${DB_ALLOW_EMPTY_PASSWORD}
     ports:
-      - 8083:${DB_PORT}
+      # <Port exposed> : < MySQL Port running inside container>
+      - '${DB_PORT}:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '${DB_PORT}'
+      # Where our data will be persisted
     volumes:
-      - ./mysql:/var/lib/mysql
-    env_file:
-      - .env
+      - db_data:/var/lib/mysql
+# Names our volume
+volumes:
+  db_data:

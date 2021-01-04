@@ -32,6 +32,8 @@ class Settings(BaseSettings):
     DB_DATABASE: str = "db-name"
     DB_USERNAME: str = "root"
     DB_PASSWORD: str = "root_pass"
+    DB_ROOT_PASSWORD: str = ""
+    DB_ALLOW_EMPTY_PASSWORD: int = 1
 
     # DOCUMENTATION
     LINK_DOCS: str = "/docs"
