@@ -15,6 +15,7 @@ class Settings(BaseSettings):
                             + "[[Find out more]]"
                             + "(https://github.com/coroo/base-architecture)")
     API_PREFIX: str = "/api/v1"
+    APP_URL: str = "https://example.com"
     APP_VERSION: str = "v1.0"
     APP_HOST: str = "0.0.0.0"
     APP_PORT: int = 8000
@@ -36,6 +37,7 @@ class Settings(BaseSettings):
     DB_ALLOW_EMPTY_PASSWORD: int = 1
 
     # DOCUMENTATION
+    PUBLIC_URL: str = "public"
     LINK_DOCS: str = "/docs"
     LINK_REDOC: str = "/redoc"
 

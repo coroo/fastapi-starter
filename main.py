@@ -27,6 +27,11 @@ app = FastAPI(title=settings.APP_NAME,
               docs_url=settings.LINK_DOCS,
               redoc_url=settings.LINK_REDOC,)
 
+app.mount(
+    "/"+settings.PUBLIC_URL,
+    StaticFiles(directory=settings.PUBLIC_URL),
+    name=settings.PUBLIC_URL)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.ALLOWED_ORIGINS.split(","),
