@@ -11,6 +11,9 @@ logs
 # Docker
 mysql/*
 
+# Public Image
+public/*
+
 # Fast Api Default Gitignore
 .idea
 .ipynb_checkpoints
