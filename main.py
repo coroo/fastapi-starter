@@ -10,6 +10,7 @@ from env import settings
 
 from app.utils.metadata import tags
 from datetime import datetime
+from fastapi.staticfiles import StaticFiles
 
 if not os.path.exists("storage"):
     os.mkdir("storage")
