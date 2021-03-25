@@ -9,6 +9,7 @@ pytest
 pytest-cov
 uvicorn
 faker
+cryptography==3.3.2
 python-jose[cryptography]
 passlib[bcrypt]
 python-multipart
