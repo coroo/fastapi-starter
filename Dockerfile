@@ -17,6 +17,7 @@ RUN set -e; \
                 openssl-dev \
         ;
 
+RUN apk add build-base
 RUN /usr/local/bin/python -m pip install --upgrade pip
 
 COPY . ./
