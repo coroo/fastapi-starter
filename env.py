@@ -38,6 +38,7 @@ class Settings(BaseSettings):
 
     # DOCUMENTATION
     PUBLIC_URL: str = "public"
+    STORAGE_URL: str = "storage"
     LINK_DOCS: str = "/docs"
     LINK_REDOC: str = "/redoc"
 
