@@ -41,6 +41,7 @@ class Settings(BaseSettings):
     DB_BACKUP_TABLE_NAME: str = ""
     DB_CONTAINER_NAME: str = ""
     BACKUP_RETAIN_DAYS: int = 30
+    DB_BACKUP_FILE_NAME: str = ""
 
     # DOCUMENTATION
     PUBLIC_URL: str = "public"
