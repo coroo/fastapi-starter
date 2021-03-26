@@ -35,6 +35,12 @@ class Settings(BaseSettings):
     DB_PASSWORD: str = "root_pass"
     DB_ROOT_PASSWORD: str = ""
     DB_ALLOW_EMPTY_PASSWORD: int = 1
+    
+    # DB BACKUP AND RESTORE
+    DB_BACKUP_PATH: str = "storage/database-backup"
+    DB_BACKUP_TABLE_NAME: str = ""
+    DB_CONTAINER_NAME: str = ""
+    BACKUP_RETAIN_DAYS: int = 30
 
     # DOCUMENTATION
     PUBLIC_URL: str = "public"
