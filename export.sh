@@ -16,17 +16,29 @@ DB_DATABASE=$(grep DB_DATABASE .env | cut -d '=' -f2)
 DB_CONTAINER_NAME=$(grep DB_CONTAINER_NAME .env | cut -d '=' -f2)
 DB_BACKUP_TABLE_NAME=$(grep DB_BACKUP_TABLE_NAME .env | cut -d '=' -f2)
 BACKUP_RETAIN_DAYS=$(grep BACKUP_RETAIN_DAYS .env | cut -d '=' -f2)   ## Number of days to keep local backup copy
+MYSQLDUMP_LOG=$(which mysqldump)
 
 #################################################################
 
-mkdir -p /${DB_BACKUP_PATH}
+mkdir -p ${DB_BACKUP_PATH}
 echo "Backup started for database - ${DB_DATABASE}"
 
-mysqldump -h ${DB_CONTAINER_NAME} \
-		  -P ${DB_PORT} \
-		  -u${DB_USERNAME} \
-		  -p${DB_PASSWORD} \
-		  ${DB_DATABASE} ${DB_BACKUP_TABLE_NAME} --column-statistics=0 --skip-add-drop-table |  sed -r 's/CREATE TABLE (`[^`]+`)/TRUNCATE TABLE \1; CREATE TABLE IF NOT EXISTS \1/g'  > ${DB_BACKUP_PATH}/${DB_DATABASE}-${TODAY}.sql
+if [${DB_PASSWORD} -eq '']; then
+  ${MYSQLDUMP_LOG} -u${DB_USERNAME} \
+      -h ${DB_HOST} \
+      -P ${DB_PORT} \
+          ${DB_DATABASE} ${DB_BACKUP_TABLE_NAME} --skip-add-drop-table  > ${DB_BACKUP_PATH}/${DB_DATABASE}-${TODAY}.sql
+else 
+  ${MYSQLDUMP_LOG} -u${DB_USERNAME} \
+      -p${DB_PASSWORD} \
+      -h ${DB_HOST} \
+      -P ${DB_PORT} \
+          ${DB_DATABASE} ${DB_BACKUP_TABLE_NAME} --skip-add-drop-table  > ${DB_BACKUP_PATH}/${DB_DATABASE}-${TODAY}.sql
+  echo ${DB_PASSWORD}
+fi
+
+sed -i '' 's/CREATE TABLE \(.*\)/TRUNCATE TABLE \1; CREATE TABLE IF NOT EXISTS \1/g' ${DB_BACKUP_PATH}/${DB_DATABASE}-${TODAY}.sql
+sed -i '' 's/ (; CREATE TABLE IF NOT EXISTS/; CREATE TABLE IF NOT EXISTS/g' ${DB_BACKUP_PATH}/${DB_DATABASE}-${TODAY}.sql
 
 if [ $? -eq 0 ]; then
   echo "Database backup successfully completed"
