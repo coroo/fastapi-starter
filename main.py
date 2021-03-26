@@ -12,10 +12,8 @@ from app.utils.metadata import tags
 from datetime import datetime
 from fastapi.staticfiles import StaticFiles
 
-if not os.path.exists("storage"):
-    os.mkdir("storage")
-    if not os.path.exists("storage/logs"):
-        os.mkdir("storage/logs")
+if not os.path.exists("storage/logs"):
+    os.mkdir("storage/logs")
 
 log_filename = 'storage/logs/{:%Y-%m-%d}.log'.format(datetime.now())
 logging.basicConfig(filename=log_filename, level=logging.ERROR,
