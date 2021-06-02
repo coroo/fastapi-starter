@@ -35,6 +35,7 @@ class UserController():
             data={"sub": user.email}, expires_delta=access_token_expires
         )
         return {"access_token": access_token,
+                "user_key": user.id,
                 "token_type": "bearer"}
 
     @router.get(local_prefix+"me/", response_model=user_schema.User)

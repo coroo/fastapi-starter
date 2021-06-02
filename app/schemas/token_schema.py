@@ -4,6 +4,7 @@ from typing import Optional
 
 class Token(BaseModel):
     access_token: str
+    user_key: str
     token_type: str
 
 
