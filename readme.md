@@ -29,6 +29,8 @@
     └── {{all_unit_testing}}
     └── __init__.py
 └── env.py                  # I am the env.example, do you remember ?
+└── export.sh               # I am the script that you need to export your current database as a backup.
+└── import.sh               # If you need to import the previously backed up database, please call me :)
 └── main.py                 # Call me, then you will have your app running :3
 └── readme.md               # You in me right now ;)
 ```
@@ -169,3 +171,38 @@ pip3 install -r requirements.txt
 ```console
 python3 main.py
 ```
+
+---
+
+## :card_file_box: Database Export and Import
+
+### Exporting Database
+
+Exporting Database could be done by executing the script of file `export.sh`
+
+Pre-requisites to fill in `.env` file:
+- **DB_BACKUP_PATH** - Specify the path for the export result.
+- **DB_HOST** - Specify host of your database. (ex: *localhost*, *docker*)
+- **DB_PORT** - Specify port of your database connection.
+- **DB_USERNAME** - Specify credentials of your database connection.
+- **DB_PASSWORD** - Specify credentials of your database connection.
+- **DB_DATABASE** - Specify name of the database you want to export.
+- **DB_CONTAINER_NAME** - Specify name of database container you want to export in Docker.
+- **DB_BACKUP_TABLE_NAME** - Specify table names you need to export separated by space. (ex: *'items users transactions products'*)
+- **BACKUP_RETAIN_DAYS** - Specify the expiry date of exported database. (ex: 30)
+
+### Importing Database
+
+Importing Database could be done by executing the script of file `import.sh`
+
+Pre-requisites to fill in `.env` file:
+- **DB_BACKUP_PATH** - Specify the path for the export result.
+- **DB_HOST** - Specify host of your database. (ex: *localhost*, *docker*)
+- **DB_PORT** - Specify port of your database connection.
+- **DB_USERNAME** - Specify credentials of your database connection.
+- **DB_PASSWORD** - Specify credentials of your database connection.
+- **DB_DATABASE** - Specify name of the database you want to export.
+- **DB_BACKUP_TABLE_NAME** - Specify table names you need to export separated by space. (ex: *'items users transactions products'*)
+- **DB_BACKUP_FILE_NAME** - Specify the name of the exported database file.
+
+
